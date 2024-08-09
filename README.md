@@ -46,13 +46,13 @@ Module Name: `network_interface`
 This module creates a Network Interface (NIC) that can be associated with a Virtual Machine.
 
 ### Usage:
-``module "network_interface" {
+```module "network_interface" {
   source              = "./modules/network_interface"
   resource_group_name = "your-resource-group-name"
   vnet_name           = "your-vnet-name"
   subnet_name         = "web-tier-subnet"  # Or "database-tier-subnet"
   nic_name            = "your-nic-name"
-}``
+}```
 
 ### Variables:
 
@@ -67,7 +67,7 @@ Module Name: virtual_machine
 This module creates a Virtual Machine in Azure.
 
 ### Usage:
-``module "virtual_machine" {
+```module "virtual_machine" {
   source              = "./modules/virtual_machine"
   resource_group_name = "your-resource-group-name"
   vm_name             = "your-vm-name"
@@ -76,4 +76,4 @@ This module creates a Virtual Machine in Azure.
   image               = "Canonical:UbuntuServer:18.04-LTS:latest"
   admin_username      = "adminuser"
   admin_password      = "adminpassword"
-}``
+}```
