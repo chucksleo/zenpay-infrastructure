@@ -23,17 +23,18 @@ Module Name: `virtual_network`
 
 This module creates a Virtual Network (VNet) with two subnets: Web Tier and Database Tier.
 
-### Usage:
-``module "virtual_network" {
+#### Usage:
+```
+module "virtual_network" {
   source              = "./modules/virtual_network"
   resource_group_name = "your-resource-group-name"
   vnet_name           = "your-vnet-name"
   address_space       = ["10.0.0.0/16"]
   web_tier_prefix     = "10.0.1.0/24"
   db_tier_prefix      = "10.0.2.0/24"
-}``
-
-### Variables:
+}
+```
+#### Variables:
 * `resource_group_name`: The name of the resource group where the NIC will be created.
 * `vnet_name`: The name of the Virtual Network.
 * `address_space`: The address space for the VNet.
@@ -45,17 +46,17 @@ Module Name: `network_interface`
 
 This module creates a Network Interface (NIC) that can be associated with a Virtual Machine.
 
-### Usage:
+#### Usage:
 ```
 module "network_interface" {
-     source              = "./modules/network_interface"
-     resource_group_name = "your-resource-group-name"
-     vnet_name           = "your-vnet-name"
-     subnet_name         = "web-tier-subnet"  # Or "database-tier-subnet"
-     nic_name            = "your-nic-name"
+  source              = "./modules/network_interface"
+  resource_group_name = "your-resource-group-name"
+  vnet_name           = "your-vnet-name"
+  subnet_name         = "web-tier-subnet"  # Or "database-tier-subnet"
+  nic_name            = "your-nic-name"
 }
 ```
-### Variables:
+#### Variables:
 
 * `resource_group_name`: The name of the resource group where the NIC will be created.
 * `vnet_name`: The name of the Virtual Network where the NIC will be used.
@@ -67,16 +68,41 @@ Module Name: virtual_machine
 
 This module creates a Virtual Machine in Azure.
 
-### Usage:
+#### Usage:
 ```
 module "virtual_machine" {
-     source              = "./modules/virtual_machine"
-     resource_group_name = "your-resource-group-name"
-     vm_name             = "your-vm-name"
-     nic_id              = module.network_interface.nic_id
-     size                = "Standard_DS1_v2"
-     image               = "Canonical:UbuntuServer:18.04-LTS:latest"
-     admin_username      = "adminuser"
-     admin_password      = "adminpassword"
+  source              = "./modules/virtual_machine"
+  resource_group_name = "your-resource-group-name"
+  vm_name             = "your-vm-name"
+  nic_id              = module.network_interface.nic_id
+  size                = "Standard_DS1_v2"
+  image               = "Canonical:UbuntuServer:18.04-LTS:latest"
+  admin_username      = "adminuser"
+  admin_password      = "adminpassword"
+}
+```
+#### Variables:
+
+* `resource_group_name`: The name of the resource group where the VM will be created.
+* `vm_name`: The name of the Virtual Machine.
+* `nic_id`: The ID of the Network Interface to attach to the VM.
+* `size`: The size of the Virtual Machine.
+* `image`: The image used to create the Virtual Machine.
+* `admin_username`: The username for the VM administrator account.
+* `admin_password`: The password for the VM administrator account.
+
+### 4. SQL Database
+#### Module Name: `sql_database`
+
+This module creates an Azure SQL Database server and a SQL Database.
+
+#### Usage:
+```
+module "sql_database" {
+  source              = "./modules/sql_database"
+  resource_group_name = "your-resource-group-name"
+  sql_server_name     = "your-sql-server-name"
+  sql_db_name         = "your-sql-database-name"
+  location            = "East US"
 }
 ```
