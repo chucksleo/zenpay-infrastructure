@@ -106,3 +106,38 @@ module "sql_database" {
   location            = "East US"
 }
 ```
+#### Variables:
+
+* `resource_group_nam`e: The name of the resource group where the SQL server and database will be created.
+* `sql_server_name`: The name of the SQL Server.
+* `sql_db_name`: The name of the SQL Database.
+* `location`: The Azure region where the resources will be deployed.
+
+### Instructions
+1. Clone the Repository:
+```
+git clone <repository-url>
+cd <repository-directory>
+```
+2. Initialize Terraform:
+```
+terraform init
+```
+3. Create a `terraform.tfvars` File:
+Define your variables in a terraform.tfvars file.
+4. Validate Configuration:
+```
+terraform validate
+```
+6. Apply Configuration:
+```
+terraform apply
+```
+
+## Troubleshooting
+* Resource Already Exists: If you encounter errors stating that a resource already exists, use terraform import to import existing resources into your Terraform state.
+* Provisioning Errors: Ensure that the region specified in your configuration supports the resources you're trying to provision. Adjust the region or request a quota increase if necessary.
+
+## Support
+For further assistance, you can refer to Terraform Documentation or Azure Documentation.
+
